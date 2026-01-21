@@ -1,0 +1,111 @@
+body {
+  margin: 0;
+  background-color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+:root {
+  --moonglo-color1: #4ef9ff;
+  --sphere-gradient: radial-gradient(circle at 30% 30%, #d9e9f2, #a7c7d9);
+}
+
+.bottom_nav {
+  align-items: start;
+  width: 100vh;
+}
+
+.explore-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+@keyframes glowRotate {
+  0% {
+    transform: scale(1.2) rotate(0deg);
+    filter: blur(20px);
+  }
+
+  50% {
+    transform: scale(1.4) rotate(180deg);
+    filter: blur(35px);
+  }
+
+  100% {
+    transform: scale(1.2) rotate(360deg);
+    filter: blur(20px);
+  }
+}
+
+.explore-sphere {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  background: var(--sphere-gradient);
+
+  transition: transform 0.3s ease;
+  position: relative;
+  z-index: 1;
+}
+
+.explore-sphere::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  /* background: radial-gradient(circle, #4ef9ff, #a7c7d9);*/
+  background: conic-gradient(#4ef9ff,
+      #a7c7d9,
+      #4ef9ff);
+  filter: blur(20px);
+  z-index: -1;
+  transition: all 0.5s ease;
+  opacity: 0;
+}
+
+.explore-sphere:hover {
+  transform: scale(1.05);
+}
+
+.explore-sphere:hover::before {
+  opacity: 0.8;
+  animation: glowRotate 3s linear infinite;
+}
+
+.explore-text {
+  font-family: serif;
+  font-size: 24px;
+  font-weight: bold;
+  color: #4a5d6a;
+}
+
+.slider-indicator {
+  margin-top: 50px;
+  width: 100px;
+  height: 15px;
+  background: repeating-linear-gradient(90deg, #888 2px, transparent 2px, transparent 8px);
+}
+
+.header {
+  position: absolute;
+  width: 100%;
+  left: 0;
+  z-index: 0;
+  line-height: 0;
+  align-self: start;
+}
+
+.top-object {
+  width: 100%;
+  height: auto;
+}
